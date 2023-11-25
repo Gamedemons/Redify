@@ -1,0 +1,29 @@
+{
+  "name": "redify",
+  "productName": "Redify",
+  "version": "1.0.0",
+  "author": "GameDemons",
+  "description": "A Resso Downloader",
+  "homepage": "https://gamedemons.github.io/Nyxane-Vue/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gamedemons/Redify"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "bin": "./index.js",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "chalk-animation": "^1.6.0",
+    "figlet": "^1.5.2",
+    "gradient-string": "^2.0.0",
+    "inquirer": "^8.2.0",
+    "nanospinner": "^1.0.0",
+    "axios": "^0.21.1",
+    "html-entities": "^2.1.0",
+    "jssoup": "0.0.12",
+    "progress": "^2.0.3"
+  }
+}
