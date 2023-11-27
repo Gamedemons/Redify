@@ -1,15 +1,32 @@
 {
-  "name": "redify",
-  "productName": "Redify",
+  "name": "ressdify",
+  "productName": "Ressdify",
+  "package-name": "ressdify",
   "version": "1.0.0",
-  "author": "GameDemons",
+  "author": "Manthan Raj Rajoria",
   "description": "A Resso Downloader",
-  "homepage": "https://gamedemons.github.io/Nyxane-Vue/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gamedemons/Redify"
+    "url": "git+https://github.com/Gamedemons/Ressdify.git"
   },
+  "keywords": [
+    "Resso",
+    "resso",
+    "Music",
+    "music",
+    "Music-Downloader",
+    "music-downloader",
+    "Downloader",
+    "downloader",
+    "Resso-Downloader",
+    "resso-downloader"
+  ],
   "main": "index.js",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gamedemons/Ressdify/issues"
+  },
+  "homepage": "https://github.com/Gamedemons/Ressdify#readme",
   "scripts": {
     "start": "node ."
   },
