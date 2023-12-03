@@ -2,7 +2,12 @@
 
 A Resso Downloader by Gamedemons
 
-## Use
+## Install
 ```
 npm i ressdify
+```
+
+## Use
+```
+npx ressdify
 ```
