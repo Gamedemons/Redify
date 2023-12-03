@@ -45,7 +45,7 @@ try {
       type: "input",
       message: "Enter the resso playlist url : ",
       default() {
-        return "https://www.resso.com/playlist/Feel-Good-Bollywood-6609951906645153793";
+        return "https://m.resso.com/Zs8RftAta/";
       },
     });
 

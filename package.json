@@ -2,7 +2,7 @@
   "name": "ressdify",
   "productName": "Ressdify",
   "package-name": "ressdify",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Manthan Raj Rajoria",
   "description": "A Resso Downloader",
   "repository": {
@@ -34,15 +34,16 @@
     "ressdify": "./index.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "chalk": "^4.1.2",
     "chalk-animation": "^1.6.0",
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.0",
-    "inquirer": "^8.2.0",
-    "nanospinner": "^1.0.0",
-    "axios": "^0.21.1",
     "html-entities": "^2.1.0",
+    "inquirer": "^8.2.0",
     "jssoup": "0.0.12",
-    "progress": "^2.0.3"
+    "nanospinner": "^1.0.0",
+    "progress": "^2.0.3",
+    "ressdify": "^1.0.6"
   }
 }
