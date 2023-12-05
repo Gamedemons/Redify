@@ -4,6 +4,7 @@ const inquirer = require("inquirer");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
 const figlet = require("figlet");
+const isUrl = require("is-url")
 var ProgressBar = require("progress");
 const fs = require("fs");
 const axios = require("axios");
@@ -27,6 +28,15 @@ const unescaped_char = chalk.hex("F18501");
 const warning = chalk.hex("FF7501");
 
 try {
+  // Helpers
+  function getQueryResults(data){
+    return data["audios"][""]
+  }
+  function verifyTrackUrl(data, index){
+    return isUrl(data["audios"][""][index].url)
+  }
+
+  // Initials
   function header() {
     console.clear();
     figlet(`Ressdify`, (err, data) => {
@@ -39,7 +49,7 @@ try {
       );
     });
   }
-  async function askUrl() {
+  async function askPlaylistUrl() {
     const answers = await inquirer.prompt({
       name: "url",
       type: "input",
@@ -55,7 +65,7 @@ try {
     const answers = await inquirer.prompt({
       name: "location",
       type: "input",
-      message: "Enter the download location : ",
+      message: "Enter the download location  : ",
       default() {
         return "";
       },
@@ -64,6 +74,7 @@ try {
     save_location = answers.location;
   }
 
+  // Main
   async function getPlaylist() {
     try {
       let playlistObj = {};
@@ -76,7 +87,6 @@ try {
       const playlistHeaderBlock = soup.find("div", "playlist-info");
       let playlistName = playlistHeaderBlock.find("h1").text.trim();
       let playlistUser = playlistHeaderBlock.find("h3").text.trim();
-      console.log("Playlist : " + playlistName + " by " + playlistUser);
 
       playlistObj.playlist = htmlEntities.decode(playlistName);
       playlistObj.user = htmlEntities.decode(playlistUser);
@@ -120,22 +130,21 @@ try {
 
       let song = songsList[index].name;
       let singer = songsList[index].singer;
-      getURL(song, singer);
+      getTrackUrl(song, singer);
     } catch {
       console.log(chalk.red("Directory Error."));
       return;
     }
   };
 
-  const getURL = async (song, singer) => {
+  const getTrackUrl = async (song, singer) => {
     let number = index + 1;
     try {
       let query = (song + "%20" + singer).replace(/\s/g, "%20");
       const { data } = await axios.get(INFO_URL + query);
 
-      // when no result then [{}] is returned so length is always 1, when 1 result then [{id:"",etc:""}]
+      // No result
       if (!data["audios"][""][0].id) {
-        // No result
         console.log(
           not_found(`\n(${number}/${total}) Error - Song not found : ` + song)
         );
@@ -148,11 +157,20 @@ try {
       let i = 0;
       let track = data["audios"][""][i];
       let totalTracks = data["audios"][""].length;
+      let hasBadUrl = !verifyTrackUrl(data, 0);
+
       while (
-        i < totalTracks &&
-        /remix|revisited|reverb|mix/i.test(track.tit_art)
+        (i < totalTracks &&
+        /remix|revisited|reverb|mix/i.test(track.tit_art)) || hasBadUrl
       ) {
         i += 1;
+        if(hasBadUrl){
+          if(verifyTrackUrl(data, i)){
+            track = getQueryResults(data)[i];
+            hasBadUrl = false;
+            break;
+          }
+        }
         track = data["audios"][""][i];
       }
       //if reach the end then select the first song
@@ -171,7 +189,7 @@ try {
 
       let songName = track.tit_art;
       songName.replace(/\?|<|>|\*|\"|:|\||\/|\\/g, ""); // Removing special characters
-      download(songName, link);
+      downloadTrack(songName, link);
     } catch {
       console.log(
         unescaped_char(
@@ -183,7 +201,7 @@ try {
     }
   };
 
-  const download = async (song, url) => {
+  const downloadTrack = async (song, url) => {
     let number = index + 1;
     try {
       console.log(`\n(${number}/${total}) Downloading: ${song}`);
@@ -224,7 +242,7 @@ try {
   async function initialize() {
     console.clear();
     console.log(chalk.greenBright.bold("Welcome to RESSDIFY !"));
-    await askUrl();
+    await askPlaylistUrl();
     console.log(warning("Do not enter system root as download location or two levels below it."))
     await askSaveLocation();
     header();
@@ -252,12 +270,14 @@ try {
 
         songsList = res.songs;
         total = res.total;
+        console.log("Playlist : " + res.playlist + " by " + res.user);
         console.log("Total songs : " + total + "\n");
 
         //create folder
         if (!fs.existsSync(save_location)) {
           fs.mkdirSync(save_location);
         }
+
         startDownloading();
       } catch {
         console.log(chalk.red("We ran into some unexpected error.") + "\n");
@@ -265,6 +285,7 @@ try {
     });
   }
 
+  // Entry Point
   initialize();
 
 } catch {
