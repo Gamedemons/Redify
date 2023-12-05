@@ -26,24 +26,8 @@ Also there are a few songs that may crash the app. Remove those songs from the p
 3. Then type `npm i ressdify` and press enter.
 4. Now type `npx ressdify` and press enter and the app should start.
 ### Using the App
-The app will first ask the resso playlist url. There is already a default url for demo purposes, so you can just press enter.
-If you want to enter your custom url feel free to do so and press enter. It should look like this
-
-![](./assets/step_1.png)
-
-The next step is to enter a path/location on your computer where you want your music to be downloaded/saved. You can copy the path of the location from the explorer like this.
-
-![](./assets/explorer_path.png)
-
-I was saving the files in my user directory you can use any folder as long as it is not the system root folder (`C:\`). I edited my username with `<username>` in path here.
-
-Now paste the path in app
-
-![](./assets/step_2.png)
-
-Press enter and the app should start downloading the songs.
-Here is a preview of what it looks like
-
-![](./assets/app_preview.png)
-
-The first song is skipped as it is already downloaded.
+1. The app will first ask the resso playlist url. There is already a default url for demo purposes, so you can just press enter.
+2. If you want to enter your custom url feel free to do so and press enter.
+3. The next step is to enter a path/location on your computer where you want your music to be downloaded/saved. You can copy the path of the location from the explorer.
+4. Now paste the path in app
+5. Press enter and the app should start downloading the songs.
