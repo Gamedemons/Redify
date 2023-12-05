@@ -43,7 +43,6 @@
     "inquirer": "^8.2.0",
     "jssoup": "0.0.12",
     "nanospinner": "^1.0.0",
-    "progress": "^2.0.3",
-    "ressdify": "^1.0.6"
+    "progress": "^2.0.3"
   }
 }
