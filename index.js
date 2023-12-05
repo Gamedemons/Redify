@@ -159,10 +159,7 @@ try {
       let totalTracks = data["audios"][""].length;
       let hasBadUrl = !verifyTrackUrl(data, 0);
 
-      while (
-        (i < totalTracks &&
-        /remix|revisited|reverb|mix/i.test(track.tit_art)) || hasBadUrl
-      ) {
+      while ((i < totalTracks && /remix|revisited|reverb|mix/i.test(track.tit_art)) || hasBadUrl) {
         i += 1;
         if(hasBadUrl){
           if(verifyTrackUrl(data, i)){
@@ -193,7 +190,7 @@ try {
     } catch {
       console.log(
         unescaped_char(
-          `\n(${number}/${total}) Error - Unescaped character : ` + song
+          `\n(${number}/${total}) Error - Unescaped character - Bad url returned : ` + song
         )
       );
       startDownloading();
