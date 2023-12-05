@@ -194,11 +194,12 @@ try {
       });
 
       // Progress bar...
+      // · ▪ — 
       const totalLength = headers["content-length"];
-      const progressBar = new ProgressBar(" :bar  :percent :etas", {
+      const progressBar = new ProgressBar(" <:bar>  :percent :etas", {
         width: 50,
-        complete: "◆",
-        incomplete: "◇",
+        complete: "▪",
+        incomplete: " ",
         renderThrottle: 1,
         total: parseInt(totalLength),
       });
