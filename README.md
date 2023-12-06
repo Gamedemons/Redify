@@ -16,7 +16,8 @@ npx ressdify
 ```
 Do not enter a system root level download location or two level deep from the root, the app may crash. 
 
-Also there are a few songs that may crash the app. Remove those songs from the playlist. This is a bug and I am working on it.
+Also there are a few songs that may crash the app. Remove those songs from the playlist.
+This is a bug and I am working on it.
 ```
 
 ## Detailed Use for beginners
