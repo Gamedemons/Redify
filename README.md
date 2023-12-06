@@ -1,3 +1,6 @@
+<p align="center" width="100%">
+    <img width="33%" src="https://raw.githubusercontent.com/Gamedemons/Ressdify/main/assets/Cjdowner-Cryptocurrency-Flat-Request-Network-REQ.ico">
+</p>
 # Ressdify
 
 A Resso Downloader by Gamedemons
